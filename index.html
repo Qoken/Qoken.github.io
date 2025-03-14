@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload ke Cloudinary</title>
+    <title>My Google Drive</title>
 </head>
 <body>
-    <h2>Upload Gambar ke Cloudinary</h2>
-    <input type="file" id="upload" />
-    <br><br>
-    <img id="preview" style="max-width: 300px; display: block;" />
+    <h2>File di Google Drive</h2>
+    <ul id="file-list"></ul>
 
     <script>
-        document.getElementById('upload').addEventListener('change', async (event) => {
-            let file = event.target.files[0];
-            let formData = new FormData();
-            formData.append("file", file);
-            formData.append("upload_preset", "qois_upload"); // Ganti dengan Upload Preset kamu
-            formData.append("cloud_name", "dpipxdlkk"); // Ganti dengan nama akun Cloudinary kamu
-
-            let response = await fetch("https://api.cloudinary.com/v1_1/dpipxdlkk/image/upload", {
-                method: "POST",
-                body: formData
-            });
-
-            let data = await response.json();
-            document.getElementById('preview').src = data.secure_url;
-        });
+        fetch("https://script.google.com/macros/s/AKfycbx1G06e_4zS66LyG7ke0Bz8GDWpxmbLP2nYbdjBgE9Uhtru5TYgsN_JtgC38nNUUHEQ/exec")  // Ganti dengan URL API Google Apps Script lo
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById("file-list");
+                data.forEach(file => {
+                    let li = document.createElement("li");
+                    li.innerHTML = `<a href="${file.url}" target="_blank">${file.name}</a>`;
+                    list.appendChild(li);
+                });
+            })
+            .catch(error => console.error("Error:", error));
     </script>
 </body>
 </html>

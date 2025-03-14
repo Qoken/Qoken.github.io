@@ -16,8 +16,8 @@
             let file = event.target.files[0];
             let formData = new FormData();
             formData.append("file", file);
-            formData.append("upload_preset", "public_upload"); // Ganti sesuai Upload Preset-mu
-            formData.append("cloud_name", "NAMA_CLOUDINARY_KAMU"); // Ganti sesuai akun Cloudinary kamu
+            formData.append("upload_preset", "qois_upload"); // Ganti dengan Upload Preset kamu
+            formData.append("cloud_name", "dpipxdlkk"); // Ganti dengan nama akun Cloudinary kamu
 
             let response = await fetch("https://api.cloudinary.com/v1_1/NAMA_CLOUDINARY_KAMU/image/upload", {
                 method: "POST",
